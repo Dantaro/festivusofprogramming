@@ -1,11 +1,11 @@
-package com.festivusofprogramming.festivusofprogramming
+package com.festivusofprogramming
 
 import org.springframework.boot.autoconfigure.SpringBootApplication
 import org.springframework.boot.runApplication
 
 @SpringBootApplication
-class FestivusofprogrammingApplication
+class FestivusOfProgrammingApplication
 
 fun main(args: Array<String>) {
-    runApplication<FestivusofprogrammingApplication>(*args)
+    runApplication<FestivusOfProgrammingApplication>(*args)
 }
