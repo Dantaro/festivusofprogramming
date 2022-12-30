@@ -8,7 +8,7 @@ import org.springframework.stereotype.Service
 import javax.servlet.http.Cookie
 import javax.servlet.http.HttpServletRequest
 
-class UnauthorizedUserException : Exception()
+class UnauthorizedUserException : Throwable()
 
 @Service
 class AuthUserService(
@@ -20,7 +20,7 @@ class AuthUserService(
     fun provideAuthUser(request: HttpServletRequest): User {
         val sessionCookie = request
             .cookies
-            .firstOrNull { it.name == sessionCookieName }
+            ?.firstOrNull { it.name == sessionCookieName }
             ?: throw UnauthorizedUserException()
 
         if (sessionService.checkSession(sessionCookie.value)) {
