@@ -1,6 +1,7 @@
 package com.festivusofprogramming.external.auth
 
 import com.festivusofprogramming.external.common.AuthUserService
+import com.festivusofprogramming.external.common.Response
 import org.springframework.beans.factory.annotation.Value
 import org.springframework.web.bind.annotation.GetMapping
 import org.springframework.web.bind.annotation.RequestMapping
@@ -15,6 +16,13 @@ class SessionApiController(
     private val authUserService: AuthUserService,
     @Value("\${festivus.cookie.session.name}") private val sessionCookieName: String
 ) {
+
+    @GetMapping("/check")
+    fun checkForSession(request: HttpServletRequest): Response<Boolean> {
+        // This throws an error that leads to a 401 if the user isn't logged in
+        authUserService.provideAuthUser(request)
+        return Response(null, true)
+    }
 
     @GetMapping("/logout")
     fun logout(request: HttpServletRequest, response: HttpServletResponse) {
